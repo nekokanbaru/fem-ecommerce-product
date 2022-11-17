@@ -1,7 +1,7 @@
 <div class="nav-bar">
   <div class="nav-bar-left flex">
     <img
-      (click)="openMenu()"
+      (click)="openMenu('hamburger')"
       id="hamburger"
       src="../assets/images/icon-menu.svg"
       alt="menu button"
@@ -10,7 +10,7 @@
   </div>
 
   <div class="nav-bar-right flex">
-    <div class="nav-cart">
+    <div (click)="openMenu('cart')" class="nav-cart">
       <img src="../assets/images/icon-cart.svg" alt="cart" />
       <span *ngIf="numOfItemsInCart > 0">{{ numOfItemsInCart }}</span>
     </div>
@@ -21,7 +21,11 @@
 <div *ngIf="isMenuOpen" class="cover"></div>
 
 <div *ngIf="isMenuOpen" class="hamburger-menu" [@inOutAnimation]>
-  <img (click)="openMenu()" src="../assets/images/icon-close.svg" alt="close" />
+  <img
+    (click)="openMenu('hamburger')"
+    src="../assets/images/icon-close.svg"
+    alt="close"
+  />
   <ul>
     <li><a>Collections</a></li>
     <li><a>Men</a></li>
@@ -31,14 +35,60 @@
   </ul>
 </div>
 
+<div
+  (click)="openMenu('cart')"
+  *ngIf="isCartOpen"
+  class="cover cart-cover"
+></div>
+
+<div class="cart-menu-wrapper">
+  <div *ngIf="isCartOpen" class="cart-menu" [@outInAnimation]>
+    <h4>Cart</h4>
+    <hr />
+    <div class="cart-items">
+      <p *ngIf="numOfItemsInCart == 0">Your cart is empty</p>
+      <div class="cart-item" *ngIf="numOfItemsInCart > 0">
+        <img
+          id="cart-product-img"
+          src="../assets/images/image-product-1-thumbnail.jpg"
+          alt="cart item"
+        />
+        <div class="cart-item-description">
+          <p>Autumn Limited Edition...</p>
+          <p>
+            $125.00 x {{ numOfItemsInCart }}
+            <span style="color: var(--very-dark-blue); font-weight: 600"
+              >${{ 125 * numOfItemsInCart }}</span
+            >
+          </p>
+        </div>
+        <img
+          (click)="deleteItems()"
+          src="../assets/images/icon-delete.svg"
+          alt="cart delete"
+        />
+      </div>
+      <button *ngIf="numOfItemsInCart > 0">Checkout</button>
+    </div>
+  </div>
+</div>
+
 <div class="grid-container">
   <div class="image-slider">
     <div class="img-buttons">
-      <div class="img-previous img-button">
+      <div
+        (click)="imageSlider('previous')"
+        [ngClass]="{ 'image-btn-disabled': currentImageIndex == 1 }"
+        class="img-previous img-button"
+      >
         <img src="../assets/images/icon-previous.svg" alt="previous" />
       </div>
 
-      <div class="img-next img-button">
+      <div
+        (click)="imageSlider('next')"
+        [ngClass]="{ 'image-btn-disabled': currentImageIndex == 4 }"
+        class="img-next img-button"
+      >
         <img src="../assets/images/icon-next.svg" alt="next" />
       </div>
     </div>
