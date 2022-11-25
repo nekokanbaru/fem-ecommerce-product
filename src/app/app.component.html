@@ -9,16 +9,29 @@
     <img src="../assets/images/logo.svg" alt="logo" />
   </div>
 
+  <div class="menu">
+    <ul>
+      <li><a>Collections</a></li>
+      <li><a>Men</a></li>
+      <li><a>Women</a></li>
+      <li><a>About</a></li>
+      <li><a>Contact</a></li>
+    </ul>
+  </div>
+
   <div class="nav-bar-right flex">
     <div (click)="openMenu('cart')" class="nav-cart">
-      <img src="../assets/images/icon-cart.svg" alt="cart" />
+      <svg id="nav-cart-svg" class="icon">
+        <use xlink:href="../assets/icons.svg#nav-icon-cart"></use>
+      </svg>
       <span *ngIf="numOfItemsInCart > 0">{{ numOfItemsInCart }}</span>
     </div>
     <img id="avatar" src="./assets/images/image-avatar.png" alt="avatar" />
   </div>
 </div>
+<hr id="nav-bar-hr" />
 
-<div *ngIf="isMenuOpen" class="cover"></div>
+<div (click)="openMenu('hamburger')" *ngIf="isMenuOpen" class="cover"></div>
 
 <div *ngIf="isMenuOpen" class="hamburger-menu" [@inOutAnimation]>
   <img
@@ -76,22 +89,43 @@
 <div class="grid-container">
   <div class="image-slider">
     <div class="img-buttons">
-      <div
-        (click)="imageSlider('previous')"
-        [ngClass]="{ 'image-btn-disabled': currentImageIndex == 1 }"
-        class="img-previous img-button"
-      >
+      <div (click)="imageSlider('previous')" class="img-previous img-button">
+        <!-- [ngClass]="{ 'image-btn-disabled': currentImageIndex == 1 }" -->
         <img src="../assets/images/icon-previous.svg" alt="previous" />
       </div>
 
-      <div
-        (click)="imageSlider('next')"
-        [ngClass]="{ 'image-btn-disabled': currentImageIndex == 4 }"
-        class="img-next img-button"
-      >
+      <div (click)="imageSlider('next')" class="img-next img-button">
+        <!-- [ngClass]="{ 'image-btn-disabled': currentImageIndex == 4 }" -->
         <img src="../assets/images/icon-next.svg" alt="next" />
       </div>
     </div>
+  </div>
+
+  <div class="small-images">
+    <img
+      (click)="changeImage(1)"
+      [ngClass]="{ 'small-images-active': currentImageIndex == 1 }"
+      src="../assets/images/image-product-1-thumbnail.jpg"
+      alt=""
+    />
+    <img
+      (click)="changeImage(2)"
+      [ngClass]="{ 'small-images-active': currentImageIndex == 2 }"
+      src="../assets/images/image-product-2-thumbnail.jpg"
+      alt=""
+    />
+    <img
+      (click)="changeImage(3)"
+      [ngClass]="{ 'small-images-active': currentImageIndex == 3 }"
+      src="../assets/images/image-product-3-thumbnail.jpg"
+      alt=""
+    />
+    <img
+      (click)="changeImage(4)"
+      [ngClass]="{ 'small-images-active': currentImageIndex == 4 }"
+      src="../assets/images/image-product-4-thumbnail.jpg"
+      alt=""
+    />
   </div>
 
   <div class="product-description">
@@ -119,17 +153,15 @@
 
   <div class="add-to-cart">
     <div class="number-of-items">
-      <img
-        (click)="changeNumber('minus')"
-        src="../assets/images/icon-minus.svg"
-        alt="minus"
-      />
+      <svg class="icon plus-minus-svg" (click)="changeNumber('minus')">
+        <use xlink:href="../assets/icons.svg#icon-minus"></use>
+      </svg>
+
       <span>{{ numOfItems }}</span>
-      <img
-        (click)="changeNumber('plus')"
-        src="../assets/images/icon-plus.svg"
-        alt="plus"
-      />
+
+      <svg class="icon plus-minus-svg" (click)="changeNumber('plus')">
+        <use xlink:href="../assets/icons.svg#icon-plus"></use>
+      </svg>
     </div>
 
     <button (click)="addItemsToCart()">

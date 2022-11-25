@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -28,20 +28,17 @@ import { Component } from '@angular/core';
     ]),
   ],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   isMenuOpen: boolean = false;
   isCartOpen: boolean = false;
   numOfItems: number = 0;
   numOfItemsInCart: number = 0;
   numOfItemsChanged: boolean = false;
   currentImageIndex: number = 1;
+  carouselID: any = null;
 
   openMenu(menu: string) {
     if (menu == 'hamburger') {
-      if (this.isCartOpen) {
-        //close cart menu if it's open
-        this.isCartOpen = !this.isCartOpen;
-      }
       this.isMenuOpen = !this.isMenuOpen;
     } else if (menu == 'cart') {
       this.isCartOpen = !this.isCartOpen;
@@ -74,10 +71,16 @@ export class AppComponent {
       if (this.currentImageIndex < 4) {
         this.currentImageIndex++;
         this.changeImage(this.currentImageIndex);
+      } else {
+        this.currentImageIndex = 1;
+        this.changeImage(this.currentImageIndex);
       }
     } else {
       if (this.currentImageIndex > 1) {
         this.currentImageIndex--;
+        this.changeImage(this.currentImageIndex);
+      } else {
+        this.currentImageIndex = 3;
         this.changeImage(this.currentImageIndex);
       }
     }
@@ -89,6 +92,29 @@ export class AppComponent {
       image.style.backgroundImage =
         "url('../assets/images/image-product-" + index + ".jpg')";
       image.style.transition = '0.5s';
+      this.currentImageIndex = index;
+      this.carousel('stop');
+    }
+  }
+
+  ngOnInit(): void {
+    this.carousel('start');
+  }
+
+  carousel(action: string) {
+    if (action == 'start') {
+      if (window.innerWidth > 1024) {
+        this.carouselID = setInterval(() => {
+          if (this.currentImageIndex == 4) {
+            this.currentImageIndex = 0;
+          }
+          this.changeImage(++this.currentImageIndex);
+        }, 5000);
+      }
+    } else {
+      //stop carousel if user clicks on an image, then start it again
+      if (this.carouselID != null) clearInterval(this.carouselID);
+      this.carousel('start');
     }
   }
 }

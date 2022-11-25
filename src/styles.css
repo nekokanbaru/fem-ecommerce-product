@@ -1,11 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  margin: 0 !important;
+  margin: 0;
   padding: 0;
 }
 
-.fixed-position {
-  position: fixed;
+@media only screen and (max-width: 1024px) {
+  .fixed-position {
+    position: fixed;
+  }
 }
 
 :root {
@@ -23,4 +25,10 @@ body {
 
   /* font */
   --font: "Kumbh Sans";
+}
+
+@media only screen and (min-width: 1024px) {
+  body {
+    margin: 0 10% 0% 10%;
+  }
 }
