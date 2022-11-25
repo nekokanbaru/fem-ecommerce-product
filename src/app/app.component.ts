@@ -31,6 +31,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   isMenuOpen: boolean = false;
   isCartOpen: boolean = false;
+  isSliderZoomed: boolean = false;
   numOfItems: number = 0;
   numOfItemsInCart: number = 0;
   numOfItemsChanged: boolean = false;
@@ -66,35 +67,38 @@ export class AppComponent implements OnInit {
     this.numOfItems = 0;
   }
 
-  imageSlider(direction: string) {
+  imageSlider(direction: string, slider: string) {
     if (direction == 'next') {
       if (this.currentImageIndex < 4) {
         this.currentImageIndex++;
-        this.changeImage(this.currentImageIndex);
+        this.changeImage(this.currentImageIndex, slider);
       } else {
         this.currentImageIndex = 1;
-        this.changeImage(this.currentImageIndex);
+        this.changeImage(this.currentImageIndex, slider);
       }
     } else {
       if (this.currentImageIndex > 1) {
         this.currentImageIndex--;
-        this.changeImage(this.currentImageIndex);
+        this.changeImage(this.currentImageIndex, slider);
       } else {
-        this.currentImageIndex = 3;
-        this.changeImage(this.currentImageIndex);
+        this.currentImageIndex = 4;
+        this.changeImage(this.currentImageIndex, slider);
       }
     }
   }
 
-  changeImage(index: number) {
-    let image = document.querySelector<HTMLElement>('.image-slider');
+  changeImage(index: number, slider: string) {
+    let image: any = null;
+    slider == 'default'
+      ? (image = document.querySelector<HTMLElement>('.image-slider'))
+      : (image = document.querySelector<HTMLElement>('.image-slider-zoomed'));
     if (image) {
       image.style.backgroundImage =
         "url('../assets/images/image-product-" + index + ".jpg')";
       image.style.transition = '0.5s';
       this.currentImageIndex = index;
-      this.carousel('stop');
     }
+    if (slider == 'default') this.carousel('stop');
   }
 
   ngOnInit(): void {
@@ -108,13 +112,27 @@ export class AppComponent implements OnInit {
           if (this.currentImageIndex == 4) {
             this.currentImageIndex = 0;
           }
-          this.changeImage(++this.currentImageIndex);
+          this.changeImage(++this.currentImageIndex, 'default');
+          console.log('im coming');
         }, 5000);
       }
     } else {
       //stop carousel if user clicks on an image, then start it again
       if (this.carouselID != null) clearInterval(this.carouselID);
       this.carousel('start');
+    }
+  }
+
+  zoomSlider() {
+    if (window.innerWidth > 1024) {
+      console.log(this.carouselID);
+      if (this.carouselID == 0) {
+        this.carousel('start');
+      } else {
+        clearInterval(this.carouselID);
+        this.carouselID = 0;
+      }
+      this.isSliderZoomed = !this.isSliderZoomed;
     }
   }
 }

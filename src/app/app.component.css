@@ -98,6 +98,13 @@
   justify-content: center;
 }
 
+@media only screen and (min-width: 1024px) {
+  .cart-menu-wrapper {
+    right: 10%;
+    justify-content: flex-end;
+  }
+}
+
 .cart-menu {
   z-index: 999;
   background-color: var(--white);
@@ -244,6 +251,10 @@ hr {
   display: flex;
 }
 
+.image-slider:hover {
+  cursor: pointer;
+}
+
 .small-images {
   display: none;
 }
@@ -263,6 +274,7 @@ hr {
   background-color: white;
   padding: 1em 1.2em;
   border-radius: 50%;
+  user-select: none;
 }
 
 .image-btn-disabled,
@@ -483,15 +495,71 @@ hr {
   /* desktop grid container ends */
 
   /* desktop image slider starts */
-  .image-slider {
+  .image-slider,
+  .image-slider-zoomed {
     grid-area: slider;
     max-width: 100%;
     height: 400px;
-    background-image: url("../assets/images/image-product-1.jpg");
     background-size: cover;
     background-position: center;
     display: flex;
     border-radius: 5%;
+    background-image: url("../assets/images/image-product-1.jpg");
+  }
+
+  .image-slider-zoomed-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    right: 0;
+    z-index: 12;
+  }
+
+  .image-slider-zoomed > .img-buttons {
+    display: flex;
+    margin-left: -3.3em;
+    gap: 23em;
+  }
+
+  .image-slider-zoomed > .img-buttons > .img-button {
+    cursor: pointer;
+  }
+
+  .image-slider-zoomed-cover {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 80%;
+    z-index: 11;
+    background-color: var(--black);
+  }
+
+  .image-slider-zoomed {
+    grid-area: auto;
+    width: 400px;
+    z-index: 15;
+  }
+
+  .image-slider-zoomed-wrapper > .small-images {
+    z-index: 15;
+    width: 25%;
+    gap: 20px;
+  }
+
+  .image-slider-zoomed-wrapper > .small-images > .small-image-bg > img {
+    width: 100% !important;
+    height: 100%;
+    aspect-ratio: 1/1;
+  }
+
+  .image-slider-zoomed-wrapper > .small-images > .small-image-bg {
+    background-color: white;
+    border-radius: 10%;
   }
 
   .small-images {
@@ -572,10 +640,20 @@ hr {
     grid-area: addto;
   }
 
-  .add-to-cart button:hover {
+  .add-to-cart button:hover,
+  .cart-items button:hover {
     opacity: 0.6;
     cursor: pointer;
     box-shadow: 0px 15px 10px var(--pale-orange);
+  }
+
+  .cart-item svg {
+    fill: var(--grayish-blue);
+  }
+
+  .cart-item svg:hover {
+    cursor: pointer;
+    fill: var(--dark-grayish-blue);
   }
 
   /* desktop add to cart ends */

@@ -75,11 +75,14 @@
             >
           </p>
         </div>
-        <img
+        <!-- <img
           (click)="deleteItems()"
           src="../assets/images/icon-delete.svg"
           alt="cart delete"
-        />
+        /> -->
+        <svg class="icon" (click)="deleteItems()">
+          <use xlink:href="../assets/icons.svg#icon-delete"></use>
+        </svg>
       </div>
       <button *ngIf="numOfItemsInCart > 0">Checkout</button>
     </div>
@@ -87,42 +90,118 @@
 </div>
 
 <div class="grid-container">
-  <div class="image-slider">
+  <div class="image-slider" (click)="zoomSlider()">
     <div class="img-buttons">
-      <div (click)="imageSlider('previous')" class="img-previous img-button">
+      <div
+        (click)="imageSlider('previous', 'default')"
+        class="img-previous img-button"
+      >
         <!-- [ngClass]="{ 'image-btn-disabled': currentImageIndex == 1 }" -->
         <img src="../assets/images/icon-previous.svg" alt="previous" />
       </div>
 
-      <div (click)="imageSlider('next')" class="img-next img-button">
+      <div (click)="imageSlider('next', 'default')" class="img-next img-button">
         <!-- [ngClass]="{ 'image-btn-disabled': currentImageIndex == 4 }" -->
         <img src="../assets/images/icon-next.svg" alt="next" />
       </div>
     </div>
   </div>
 
+  <div *ngIf="isSliderZoomed == true" class="image-slider-zoomed-wrapper">
+    <div class="image-slider-zoomed-cover" (click)="zoomSlider()"></div>
+    <div class="image-slider-zoomed">
+      <div class="img-buttons">
+        <div
+          (click)="imageSlider('previous', 'zoomed')"
+          class="img-previous img-button"
+        >
+          <!-- [ngClass]="{ 'image-btn-disabled': currentImageIndex == 1 }" -->
+          <img src="../assets/images/icon-previous.svg" alt="previous" />
+        </div>
+
+        <div
+          (click)="imageSlider('next', 'zoomed')"
+          class="img-next img-button"
+        >
+          <!-- [ngClass]="{ 'image-btn-disabled': currentImageIndex == 4 }" -->
+          <img src="../assets/images/icon-next.svg" alt="next" />
+        </div>
+      </div>
+    </div>
+    <div class="small-images">
+      <div class="small-image-bg">
+        <img
+          (click)="changeImage(1, 'zoomed')"
+          [ngClass]="{
+            'small-images-active': currentImageIndex == 1 && isSliderZoomed
+          }"
+          src="../assets/images/image-product-1-thumbnail.jpg"
+          alt=""
+        />
+      </div>
+      <div class="small-image-bg">
+        <img
+          (click)="changeImage(2, 'zoomed')"
+          [ngClass]="{
+            'small-images-active': currentImageIndex == 2 && isSliderZoomed
+          }"
+          src="../assets/images/image-product-2-thumbnail.jpg"
+          alt=""
+        />
+      </div>
+      <div class="small-image-bg">
+        <img
+          (click)="changeImage(3, 'zoomed')"
+          [ngClass]="{
+            'small-images-active': currentImageIndex == 3 && isSliderZoomed
+          }"
+          src="../assets/images/image-product-3-thumbnail.jpg"
+          alt=""
+        />
+      </div>
+      <div class="small-image-bg">
+        <img
+          (click)="changeImage(4, 'zoomed')"
+          [ngClass]="{
+            'small-images-active': currentImageIndex == 4 && isSliderZoomed
+          }"
+          src="../assets/images/image-product-4-thumbnail.jpg"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+
   <div class="small-images">
     <img
-      (click)="changeImage(1)"
-      [ngClass]="{ 'small-images-active': currentImageIndex == 1 }"
+      (click)="changeImage(1, 'default')"
+      [ngClass]="{
+        'small-images-active': currentImageIndex == 1 && !isSliderZoomed
+      }"
       src="../assets/images/image-product-1-thumbnail.jpg"
       alt=""
     />
     <img
-      (click)="changeImage(2)"
-      [ngClass]="{ 'small-images-active': currentImageIndex == 2 }"
+      (click)="changeImage(2, 'default')"
+      [ngClass]="{
+        'small-images-active': currentImageIndex == 2 && !isSliderZoomed
+      }"
       src="../assets/images/image-product-2-thumbnail.jpg"
       alt=""
     />
     <img
-      (click)="changeImage(3)"
-      [ngClass]="{ 'small-images-active': currentImageIndex == 3 }"
+      (click)="changeImage(3, 'default')"
+      [ngClass]="{
+        'small-images-active': currentImageIndex == 3 && !isSliderZoomed
+      }"
       src="../assets/images/image-product-3-thumbnail.jpg"
       alt=""
     />
     <img
-      (click)="changeImage(4)"
-      [ngClass]="{ 'small-images-active': currentImageIndex == 4 }"
+      (click)="changeImage(4, 'default')"
+      [ngClass]="{
+        'small-images-active': currentImageIndex == 4 && !isSliderZoomed
+      }"
       src="../assets/images/image-product-4-thumbnail.jpg"
       alt=""
     />
