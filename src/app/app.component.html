@@ -3,10 +3,10 @@
     <img
       (click)="openMenu('hamburger')"
       id="hamburger"
-      src="../ecommerce-product-page/assets/images/icon-menu.svg"
+      src="assets/images/icon-menu.svg"
       alt="menu button"
     />
-    <img src="../ecommerce-product-page/assets/images/logo.svg" alt="logo" />
+    <img src="assets/images/logo.svg" alt="logo" />
   </div>
 
   <div class="menu">
@@ -22,17 +22,11 @@
   <div class="nav-bar-right flex">
     <div (click)="openMenu('cart')" class="nav-cart">
       <svg id="nav-cart-svg" class="icon">
-        <use
-          xlink:href="../ecommerce-product-page/assets/icons.svg#nav-icon-cart"
-        ></use>
+        <use xlink:href="assets/icons.svg#nav-icon-cart"></use>
       </svg>
       <span *ngIf="numOfItemsInCart > 0">{{ numOfItemsInCart }}</span>
     </div>
-    <img
-      id="avatar"
-      src=".../ecommerce-product-page/assets/images/image-avatar.png"
-      alt="avatar"
-    />
+    <img id="avatar" src=".assets/images/image-avatar.png" alt="avatar" />
   </div>
 </div>
 <hr id="nav-bar-hr" />
@@ -42,7 +36,7 @@
 <div *ngIf="isMenuOpen" class="hamburger-menu" [@inOutAnimation]>
   <img
     (click)="openMenu('hamburger')"
-    src="../ecommerce-product-page/assets/images/icon-close.svg"
+    src="assets/images/icon-close.svg"
     alt="close"
   />
   <ul>
@@ -69,7 +63,7 @@
       <div class="cart-item" *ngIf="numOfItemsInCart > 0">
         <img
           id="cart-product-img"
-          src="../ecommerce-product-page/assets/images/image-product-1-thumbnail.jpg"
+          src="assets/images/image-product-1-thumbnail.jpg"
           alt="cart item"
         />
         <div class="cart-item-description">
@@ -83,13 +77,11 @@
         </div>
         <!-- <img
           (click)="deleteItems()"
-          src="../ecommerce-product-page/assets/images/icon-delete.svg"
+          src="assets/images/icon-delete.svg"
           alt="cart delete"
         /> -->
         <svg class="icon" (click)="deleteItems()">
-          <use
-            xlink:href="../ecommerce-product-page/assets/icons.svg#icon-delete"
-          ></use>
+          <use xlink:href="assets/icons.svg#icon-delete"></use>
         </svg>
       </div>
       <button *ngIf="numOfItemsInCart > 0">Checkout</button>
@@ -105,18 +97,12 @@
         class="img-previous img-button"
       >
         <!-- [ngClass]="{ 'image-btn-disabled': currentImageIndex == 1 }" -->
-        <img
-          src="../ecommerce-product-page/assets/images/icon-previous.svg"
-          alt="previous"
-        />
+        <img src="assets/images/icon-previous.svg" alt="previous" />
       </div>
 
       <div (click)="imageSlider('next', 'default')" class="img-next img-button">
         <!-- [ngClass]="{ 'image-btn-disabled': currentImageIndex == 4 }" -->
-        <img
-          src="../ecommerce-product-page/assets/images/icon-next.svg"
-          alt="next"
-        />
+        <img src="assets/images/icon-next.svg" alt="next" />
       </div>
     </div>
   </div>
@@ -130,10 +116,7 @@
           class="img-previous img-button"
         >
           <!-- [ngClass]="{ 'image-btn-disabled': currentImageIndex == 1 }" -->
-          <img
-            src="../ecommerce-product-page/assets/images/icon-previous.svg"
-            alt="previous"
-          />
+          <img src="assets/images/icon-previous.svg" alt="previous" />
         </div>
 
         <div
@@ -141,10 +124,7 @@
           class="img-next img-button"
         >
           <!-- [ngClass]="{ 'image-btn-disabled': currentImageIndex == 4 }" -->
-          <img
-            src="../ecommerce-product-page/assets/images/icon-next.svg"
-            alt="next"
-          />
+          <img src="assets/images/icon-next.svg" alt="next" />
         </div>
       </div>
     </div>
@@ -155,7 +135,7 @@
           [ngClass]="{
             'small-images-active': currentImageIndex == 1 && isSliderZoomed
           }"
-          src="../ecommerce-product-page/assets/images/image-product-1-thumbnail.jpg"
+          src="assets/images/image-product-1-thumbnail.jpg"
           alt=""
         />
       </div>
@@ -165,7 +145,7 @@
           [ngClass]="{
             'small-images-active': currentImageIndex == 2 && isSliderZoomed
           }"
-          src="../ecommerce-product-page/assets/images/image-product-2-thumbnail.jpg"
+          src="assets/images/image-product-2-thumbnail.jpg"
           alt=""
         />
       </div>
@@ -175,7 +155,7 @@
           [ngClass]="{
             'small-images-active': currentImageIndex == 3 && isSliderZoomed
           }"
-          src="../ecommerce-product-page/assets/images/image-product-3-thumbnail.jpg"
+          src="assets/images/image-product-3-thumbnail.jpg"
           alt=""
         />
       </div>
@@ -185,7 +165,7 @@
           [ngClass]="{
             'small-images-active': currentImageIndex == 4 && isSliderZoomed
           }"
-          src="../ecommerce-product-page/assets/images/image-product-4-thumbnail.jpg"
+          src="assets/images/image-product-4-thumbnail.jpg"
           alt=""
         />
       </div>
@@ -198,7 +178,7 @@
       [ngClass]="{
         'small-images-active': currentImageIndex == 1 && !isSliderZoomed
       }"
-      src="../ecommerce-product-page/assets/images/image-product-1-thumbnail.jpg"
+      src="assets/images/image-product-1-thumbnail.jpg"
       alt=""
     />
     <img
@@ -206,7 +186,7 @@
       [ngClass]="{
         'small-images-active': currentImageIndex == 2 && !isSliderZoomed
       }"
-      src="../ecommerce-product-page/assets/images/image-product-2-thumbnail.jpg"
+      src="assets/images/image-product-2-thumbnail.jpg"
       alt=""
     />
     <img
@@ -214,7 +194,7 @@
       [ngClass]="{
         'small-images-active': currentImageIndex == 3 && !isSliderZoomed
       }"
-      src="../ecommerce-product-page/assets/images/image-product-3-thumbnail.jpg"
+      src="assets/images/image-product-3-thumbnail.jpg"
       alt=""
     />
     <img
@@ -222,7 +202,7 @@
       [ngClass]="{
         'small-images-active': currentImageIndex == 4 && !isSliderZoomed
       }"
-      src="../ecommerce-product-page/assets/images/image-product-4-thumbnail.jpg"
+      src="assets/images/image-product-4-thumbnail.jpg"
       alt=""
     />
   </div>
@@ -253,26 +233,20 @@
   <div class="add-to-cart">
     <div class="number-of-items">
       <svg class="icon plus-minus-svg" (click)="changeNumber('minus')">
-        <use
-          xlink:href="../ecommerce-product-page/assets/icons.svg#icon-minus"
-        ></use>
+        <use xlink:href="assets/icons.svg#icon-minus"></use>
       </svg>
 
       <span>{{ numOfItems }}</span>
 
       <svg class="icon plus-minus-svg" (click)="changeNumber('plus')">
-        <use
-          xlink:href="../ecommerce-product-page/assets/icons.svg#icon-plus"
-        ></use>
+        <use xlink:href="assets/icons.svg#icon-plus"></use>
       </svg>
     </div>
 
     <button (click)="addItemsToCart()">
-      <!-- <img src="../ecommerce-product-page/assets/images/icon-cart.svg" alt="cart add" /> -->
+      <!-- <img src="assets/images/icon-cart.svg" alt="cart add" /> -->
       <svg id="cart-svg" class="icon">
-        <use
-          xlink:href="../ecommerce-product-page/assets/icons.svg#icon-cart"
-        ></use>
+        <use xlink:href="assets/icons.svg#icon-cart"></use>
       </svg>
       <span>Add to cart</span>
     </button>
