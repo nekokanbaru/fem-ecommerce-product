@@ -113,7 +113,6 @@ export class AppComponent implements OnInit {
             this.currentImageIndex = 0;
           }
           this.changeImage(++this.currentImageIndex, 'default');
-          console.log('im coming');
         }, 5000);
       }
     } else {
@@ -125,7 +124,6 @@ export class AppComponent implements OnInit {
 
   zoomSlider() {
     if (window.innerWidth > 1024) {
-      console.log(this.carouselID);
       if (this.carouselID == 0) {
         this.carousel('start');
       } else {
