@@ -94,7 +94,7 @@ export class AppComponent implements OnInit {
       : (image = document.querySelector<HTMLElement>('.image-slider-zoomed'));
     if (image) {
       image.style.backgroundImage =
-        "url('/assets/images/image-product-" + index + ".jpg')";
+        "url('../assets/images/image-product-" + index + ".jpg')";
       image.style.transition = '0.5s';
       this.currentImageIndex = index;
     }
